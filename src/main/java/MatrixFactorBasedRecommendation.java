@@ -1,15 +1,3 @@
-import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
-import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
-import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
-import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
-import org.apache.mahout.cf.taste.model.DataModel;
-import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
-import org.apache.mahout.cf.taste.recommender.RecommendedItem;
-import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
-import org.apache.mahout.cf.taste.similarity.UserSimilarity;
-import java.io.File;
-import java.util.List;
-import java.util.concurrent.SynchronousQueue;
 
 import org.apache.spark.api.java.*;
 import org.apache.spark.api.java.function.Function;
@@ -47,23 +35,16 @@ public class MatrixFactorBasedRecommendation {
                     }
             );
 
-            /*
-            double[] splitRate = {0.9,0.1};
-            JavaRDD<Rating>[] splitRDD = ratings.randomSplit(splitRate);
-            JavaRDD<Rating> trainings = splitRDD[0];
-            JavaRDD<Rating> testings = splitRDD[1];
-            */
+
             // Build the recommendation model using ALS
             int rank = 10;
             int numIterations = 10;
             double lambda = 0.01;
             MatrixFactorizationModel model = ALS.train(JavaRDD.toRDD(ratings), rank, numIterations, lambda); // ratings
 
-            //recommendations for a given user
-            for(int i = 1; i <= 27; i++) {
-                System.out.println(String.valueOf(i) + ":   " + model.predict(254,i));
-            }
-            for(Rating rateItem: model.recommendProducts(254,4)) {
+            //recommendations for a given user, top 3
+
+            for(Rating rateItem: model.recommendProducts(254,3)) {
                 System.out.println("Top recommendations and rates: " + rateItem.toString());
             }
 

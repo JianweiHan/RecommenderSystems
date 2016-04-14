@@ -19,7 +19,7 @@ public class ContentBasedRecommendation {
     public static void main(String[] args) {
         try{
 
-            //Step 1:- Input CSV file (CSV file should be in userID, itemID, preference) format
+            //Step 1:- Input CSV file (CSV file should be in userID(or movieID), genreID, preference) format
             DataModel dm = new FileDataModel(new File("inputData.csv"));
             //Step 2:- Create UserSimilarity or ItemSimilarity Matrix
             //UserSimilarity similarity = new UncenteredCosineSimilarity(dm);
@@ -31,9 +31,10 @@ public class ContentBasedRecommendation {
             UserBasedRecommender recommender = new GenericUserBasedRecommender(dm, neighborhood, similarity);
             //Step 5:- Call the Generated Recommender in previous step to getting
             //recommendation for particular user or Item
+
             int count = 0;
+            //print top 3 recommendations for a given user
             for(long similarId: recommender.mostSimilarUserIDs(254,100)) {
-                //System.out.println(similarId);
                 //10001 - 10028 are movie ids, other are user ids
                 if(similarId >= 10001 && similarId <= 10038) {
                     System.out.println("Recommended movie is: " + similarId);

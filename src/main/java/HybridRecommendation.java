@@ -28,7 +28,7 @@ public class HybridRecommendation {
             UserBasedRecommender recommender = new GenericUserBasedRecommender(rateModel, neighborhood, similarity);
             //Call the Generated Recommender in previous step to getting
             //recommendation for particular user or Item
-            List<RecommendedItem> recommendations = recommender.recommend(792, 3);
+            List<RecommendedItem> recommendations = recommender.recommend(254, 3);
             for (RecommendedItem recommendation : recommendations) {
                 System.out.println(recommendation);
             }

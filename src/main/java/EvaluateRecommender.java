@@ -2,6 +2,7 @@ import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.eval.RecommenderBuilder;
 import org.apache.mahout.cf.taste.eval.RecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.eval.AverageAbsoluteDifferenceRecommenderEvaluator;
+import org.apache.mahout.cf.taste.impl.eval.RMSRecommenderEvaluator;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -22,7 +23,7 @@ public class EvaluateRecommender {
         for(int i = 0; i < 10; i++) {
             try {
                 DataModel model = new FileDataModel(new File("output.csv"));
-                RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
+                RecommenderEvaluator evaluator = new RMSRecommenderEvaluator();
                 RecommenderBuilder builder = new MyRecommenderBuilder();
                 double result = evaluator.evaluate(builder, null, model, 0.9, 1.0);
                 System.out.println(result);
@@ -35,7 +36,7 @@ public class EvaluateRecommender {
             }
         }
 
-        System.out.println("average of 10-fold cross evaluation is " + sum / count);
+        System.out.println("average of 10 times evaluation is " + sum / count);
 
     }
 
