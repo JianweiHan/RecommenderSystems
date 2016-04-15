@@ -23,7 +23,7 @@ public class HybridRecommendation {
             UserSimilarity similarity = new TanimotoCoefficientSimilarity(dm);
             UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, dm);
 
-            //2.make the prediction with User-Based Recommendation, but neighborhood from content-based
+            //2.make the prediction with User-Based Recommendation, but neighborhood and similarity from content-based
             DataModel rateModel = new FileDataModel(new File("output.csv"));
             UserBasedRecommender recommender = new GenericUserBasedRecommender(rateModel, neighborhood, similarity);
             //Call the Generated Recommender in previous step to getting

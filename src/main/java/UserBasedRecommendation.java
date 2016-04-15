@@ -24,7 +24,7 @@ public class UserBasedRecommendation {
             DataModel datamodel = new FileDataModel(new File("output.csv"));
 
             //Step 2:- Create UserSimilarity or ItemSimilarity Matrix
-            UserSimilarity similarity = new PearsonCorrelationSimilarity(datamodel);
+            UserSimilarity similarity = new LogLikelihoodSimilarity(datamodel);
 
             //Step 3:- Create UserNeighbourHood object. (No Need to create ItemNeighbourHood object while creating
             //Item based Recommendation)
@@ -32,9 +32,9 @@ public class UserBasedRecommendation {
             //Step 4:- Create object of UserBasedRecommender or ItemBasedRecommender
             UserBasedRecommender recommender = new GenericUserBasedRecommender(datamodel,nbhood,similarity);
             //Step 5:- Call the Generated Recommender in previous step to getting
-            //recommendation for partiorg.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilaritycular user or Item
+            //recommendation for particular user or Item
 
-            List<RecommendedItem> recommendations  = recommender.recommend(254,3);
+            List<RecommendedItem> recommendations  = recommender.recommend(263,3);
             for (RecommendedItem recommend: recommendations) {
                 System.out.println(recommend);
             }

@@ -32,7 +32,7 @@ public class ItemBasedRecommendation {
             //recommendation for particular user or Item
             Recommender cachingRecommender = new CachingRecommender(recommender);
 
-            List<RecommendedItem> recommendations = cachingRecommender.recommend(263, 3);
+            List<RecommendedItem> recommendations = cachingRecommender.recommend(792, 3);
             for (RecommendedItem recommend: recommendations) {
                 System.out.println(recommend);
             }
