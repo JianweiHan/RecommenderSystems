@@ -50,7 +50,7 @@ public class EvaluateHybrid {
             //UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, dataModel);
             DataModel dm = null;
             try {
-                   dm = new FileDataModel(new File("inputDataUserProfile.csv"));
+                   dm = new FileDataModel(new File("ContentBasedDataUserProfile.csv"));
             }
             catch (Exception e) {
                 System.out.println("There was an error.");e.printStackTrace();

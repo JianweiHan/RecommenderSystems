@@ -20,7 +20,7 @@ public class ContentBasedRecommendation {
         try{
 
             //Step 1:- Input CSV file (CSV file should be in userID(or movieID), genreID, preference) format
-            DataModel dm = new FileDataModel(new File("inputData.csv"));
+            DataModel dm = new FileDataModel(new File("ContentBasedData.csv"));
             //Step 2:- Create UserSimilarity or ItemSimilarity Matrix
             //UserSimilarity similarity = new UncenteredCosineSimilarity(dm);
             UserSimilarity similarity = new TanimotoCoefficientSimilarity(dm);

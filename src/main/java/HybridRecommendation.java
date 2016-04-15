@@ -19,7 +19,7 @@ public class HybridRecommendation {
     public static void main(String[] args) {
         try{
             //1.Establish similarity and neighborhood from content-based user profile, to find out similar users
-            DataModel dm = new FileDataModel(new File("inputDataUserProfile.csv"));
+            DataModel dm = new FileDataModel(new File("ContentBasedDataUserProfile.csv"));
             UserSimilarity similarity = new TanimotoCoefficientSimilarity(dm);
             UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, dm);
 
